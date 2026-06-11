@@ -1,96 +1,425 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+const gardenEntries = await getCollection('garden');
+const latest = gardenEntries
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
 ---
 
 <BaseLayout title="首页" description="环境科学学生 × AI 探索者的数字花园">
-  <section class="min-h-[80vh] flex flex-col justify-center py-16 animate-in">
-    <div class="max-w-2xl mx-auto text-center mb-16">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-forest-500 to-forest-300 bg-clip-text text-transparent">
-        Building in Public.<br/>Growing in Public.<br/>Thinking in Public.
+
+  <!-- ═══════════════════════════════════════════════
+       HERO  ·  Declaration-style with massive whitespace
+       ═══════════════════════════════════════════════ -->
+  <section class="relative flex flex-col justify-center items-center text-center min-h-[90vh] py-24 px-4">
+
+    <!-- Subtle background gradient orb -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-gradient-to-b from-forest-300/10 via-forest-400/5 to-transparent blur-3xl"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-gradient-to-t from-forest-500/8 to-transparent blur-3xl"></div>
+    </div>
+
+    <!-- Staggered entrance: line 1 -->
+    <div class="hero-line mb-3">
+      <span class="hero-pill">🌱 Digital Garden</span>
+    </div>
+
+    <!-- Staggered entrance: line 2 — the declaration -->
+    <div class="hero-line mb-8 max-w-4xl">
+      <h1 class="hero-title">
+        <span class="block">Building in Public.</span>
+        <span class="block hero-title-outline">Growing in Public.</span>
+        <span class="block">Thinking in Public.</span>
       </h1>
-      <p class="text-lg text-text-secondary leading-relaxed">
-        环境科学专业学生，利用课余时间自学 AI 和编程。<br/>
-        这里是我的数字花园——记录学习过程、项目作品和成长轨迹。<br/>
-        不装懂，不藏拙，真实记录。
+    </div>
+
+    <!-- Staggered entrance: line 3 — the one-liner -->
+    <div class="hero-line mb-16 max-w-xl">
+      <p class="hero-subtitle">
+        环境科学专业学生，自学编程与 AI。<br/>
+        不是教程输出，而是<span class="hero-emphasis">真实成长过程的公开记录</span>。
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-      <a href="/projects" class="card group">
-        <div class="text-3xl mb-3">💻</div>
-        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">项目作品</h3>
-        <p class="text-sm text-text-secondary">28 个代码项目 · 5 个旗舰展示</p>
+    <!-- Staggered entrance: line 4 — action buttons -->
+    <div class="hero-line flex flex-wrap items-center justify-center gap-4">
+      <a href="/projects" class="hero-btn-primary">
+        浏览项目
+        <span class="ml-2 opacity-70">→</span>
       </a>
-      <a href="/blog" class="card group">
-        <div class="text-3xl mb-3">📝</div>
-        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">技术博客</h3>
-        <p class="text-sm text-text-secondary">AI 协作开发 · 项目复盘 · 学习笔记</p>
+      <a href="/garden" class="hero-btn-secondary">
+        阅读成长记录
       </a>
-      <a href="/garden" class="card group">
-        <div class="text-3xl mb-3">🌱</div>
-        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">成长记录</h3>
-        <p class="text-sm text-text-secondary">从 B 站转正到第一个 Python 脚本 · 跨越 5 年</p>
+      <a href="/about" class="hero-btn-ghost">
+        关于我
       </a>
-      <a href="/about" class="card group">
-        <div class="text-3xl mb-3">👤</div>
-        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">关于我</h3>
-        <p class="text-sm text-text-secondary">环境科学 × AI × 足球 · 故事版个人介绍</p>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-line absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+      <span class="block w-5 h-8 rounded-full border-2 border-forest-400/30 relative">
+        <span class="scroll-dot"></span>
+      </span>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       NAV CARDS  ·  Fragrant garden cards with glow
+       ═══════════════════════════════════════════════ -->
+  <section class="max-w-5xl mx-auto px-4 pb-16 animate-in" style="animation-delay: 0.3s">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <a href="/projects" class="nav-card group">
+        <div class="nav-card-icon">💻</div>
+        <h3 class="nav-card-title">项目作品</h3>
+        <p class="nav-card-desc">28 个项目 · 5 旗舰</p>
+      </a>
+      <a href="/blog" class="nav-card group">
+        <div class="nav-card-icon">📝</div>
+        <h3 class="nav-card-title">技术博客</h3>
+        <p class="nav-card-desc">飞书文档 · 四篇原文</p>
+      </a>
+      <a href="/garden" class="nav-card group">
+        <div class="nav-card-icon">🌱</div>
+        <h3 class="nav-card-title">成长记录</h3>
+        <p class="nav-card-desc">32 条动态 · 跨 5 年</p>
+      </a>
+      <a href="/about" class="nav-card group">
+        <div class="nav-card-icon">👤</div>
+        <h3 class="nav-card-title">关于我</h3>
+        <p class="nav-card-desc">故事版个人介绍</p>
       </a>
     </div>
   </section>
 
-  <!-- Latest activity feed -->
-  <section class="py-8 border-t border-forest-100/20">
-    <h2 class="text-xl font-semibold text-text-primary mb-4">📡 最新动态</h2>
-    <div class="card p-4">
-      <div class="flex flex-col gap-3 text-sm text-text-secondary">
-        <div class="flex items-center gap-2">
-          <span class="text-forest-400">2026-06-10</span>
-          <span>📝 音乐节</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-forest-400">2026-06-03</span>
-          <span>🧠 感觉最近的自己很符合我对于大学生的想象</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-forest-400">2026-05-25</span>
-          <span>🎯 Cashew App IPA 构建成功 + 记账数据全部导入</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-forest-400">2026-05-25</span>
-          <span>📝 开发之外的生活～瓜迪奥拉告别</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-forest-400">2026-05-16</span>
-          <span>📝 这半个月很开心～sideloady 技术突破</span>
-        </div>
+
+  <!-- ═══════════════════════════════════════════════
+       ACTIVITY  ·  Timeline-style latest updates
+       ═══════════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-4 pb-16 animate-in" style="animation-delay: 0.5s">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-semibold text-text-primary tracking-tight">📡 最新动态</h2>
+      <a href="/garden" class="text-sm text-forest-400 hover:text-forest-300 transition-colors">查看全部 →</a>
+    </div>
+    <div class="activity-feed">
+      {latest.map((entry, i) => (
+        <a href={`/garden#cat-${entry.data.category}`} class="activity-item" style={`animation-delay: ${0.6 + i * 0.08}s`}>
+          <span class="activity-date">{entry.data.date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' })}</span>
+          <span class="activity-text">{entry.data.title}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       STATS  ·  Subtle numbers bar
+       ═══════════════════════════════════════════════ -->
+  <section class="max-w-3xl mx-auto px-4 pb-24 animate-in" style="animation-delay: 0.7s">
+    <div class="grid grid-cols-4 gap-6 py-8 border-t border-forest-100/10 dark:border-forest-400/10">
+      <div class="text-center">
+        <div class="stat-number">28</div>
+        <div class="stat-label">代码项目</div>
       </div>
-      <div class="mt-4 pt-3 border-t border-forest-100/10">
-        <a href="/garden" class="text-sm text-forest-500 hover:text-forest-400 transition-colors">查看全部 →</a>
+      <div class="text-center">
+        <div class="stat-number">5</div>
+        <div class="stat-label">S 级项目</div>
+      </div>
+      <div class="text-center">
+        <div class="stat-number">32</div>
+        <div class="stat-label">成长记录</div>
+      </div>
+      <div class="text-center">
+        <div class="stat-number">2021</div>
+        <div class="stat-label">记录起点</div>
       </div>
     </div>
   </section>
 
-  <!-- Stats bar -->
-  <section class="py-8">
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div class="card text-center">
-        <div class="text-2xl font-bold text-forest-500">28</div>
-        <div class="text-xs text-text-secondary mt-1">代码项目</div>
-      </div>
-      <div class="card text-center">
-        <div class="text-2xl font-bold text-forest-500">5</div>
-        <div class="text-xs text-text-secondary mt-1">S 级项目</div>
-      </div>
-      <div class="card text-center">
-        <div class="text-2xl font-bold text-forest-500">32</div>
-        <div class="text-xs text-text-secondary mt-1">成长记录</div>
-      </div>
-      <div class="card text-center">
-        <div class="text-2xl font-bold text-forest-500">2021</div>
-        <div class="text-xs text-text-secondary mt-1">记录起点</div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
+
+<style is:global>
+  /* ── Hero staggered entrance ── */
+  .hero-line {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero-line:nth-child(2) { animation-delay: 0.15s; }
+  .hero-line:nth-child(3) { animation-delay: 0.3s; }
+  .hero-line:nth-child(4) { animation-delay: 0.45s; }
+  .hero-line:nth-child(5) { animation-delay: 0.6s; }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Hero pill ── */
+  .hero-pill {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: rgba(82, 183, 136, 0.1);
+    color: var(--color-forest-400);
+    border: 1px solid rgba(82, 183, 136, 0.15);
+  }
+
+  /* ── Hero title ── */
+  .hero-title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+  }
+  .hero-title-outline {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px var(--color-forest-300);
+    opacity: 0.6;
+  }
+  .dark .hero-title-outline {
+    -webkit-text-stroke-color: var(--color-forest-400);
+    opacity: 0.35;
+  }
+
+  /* ── Hero subtitle ── */
+  .hero-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .hero-emphasis {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+  .dark .hero-emphasis {
+    color: var(--color-forest-200);
+  }
+
+  /* ── Hero buttons ── */
+  .hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    background: var(--color-forest-500);
+    color: #fff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(45, 106, 79, 0.25);
+  }
+  .hero-btn-primary:hover {
+    background: var(--color-forest-400);
+    box-shadow: 0 6px 28px rgba(82, 183, 136, 0.35);
+    transform: translateY(-1px);
+  }
+  .hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: 1px solid var(--color-forest-300);
+    color: var(--color-forest-600);
+    transition: all 0.3s ease;
+  }
+  .hero-btn-secondary:hover {
+    border-color: var(--color-forest-400);
+    background: rgba(82, 183, 136, 0.06);
+  }
+  .dark .hero-btn-secondary {
+    border-color: rgba(82, 183, 136, 0.25);
+    color: var(--color-forest-300);
+  }
+  .dark .hero-btn-secondary:hover {
+    background: rgba(82, 183, 136, 0.08);
+  }
+  .hero-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease;
+  }
+  .hero-btn-ghost:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-indicator {
+    opacity: 0;
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+  }
+  .scroll-dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-forest-400);
+    margin: 4px auto 0;
+    animation: scrollBob 2s ease-in-out infinite;
+  }
+  @keyframes scrollBob {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50%      { transform: translateY(10px); opacity: 1; }
+  }
+
+  /* ── Navigation cards ── */
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: var(--color-bg-card);
+    border: 1px solid rgba(45, 106, 79, 0.08);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .nav-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(circle at 50% 0%, rgba(82, 183, 136, 0.08), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .nav-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(82, 183, 136, 0.3);
+    box-shadow: 0 12px 40px rgba(45, 106, 79, 0.08);
+  }
+  .nav-card:hover::before {
+    opacity: 1;
+  }
+  .dark .nav-card {
+    border-color: rgba(82, 183, 136, 0.06);
+  }
+  .dark .nav-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  }
+  .nav-card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+  .nav-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 1;
+  }
+  .nav-card-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Activity feed ── */
+  .activity-feed {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(45, 106, 79, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-bg-card);
+  }
+  .dark .activity-feed {
+    border-color: rgba(82, 183, 136, 0.06);
+  }
+  .activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid rgba(45, 106, 79, 0.05);
+    transition: background 0.2s ease;
+    opacity: 0;
+    animation: heroFadeUp 0.5s ease forwards;
+  }
+  .dark .activity-item {
+    border-bottom-color: rgba(82, 183, 136, 0.04);
+  }
+  .activity-item:last-child {
+    border-bottom: none;
+  }
+  .activity-item:hover {
+    background: rgba(82, 183, 136, 0.04);
+  }
+  .activity-date {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--color-forest-400);
+    font-weight: 500;
+    width: 3.5rem;
+  }
+  .activity-text {
+    font-size: 0.9rem;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Stat numbers ── */
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-forest-500);
+    font-variant-numeric: tabular-nums;
+  }
+  .dark .stat-number {
+    color: var(--color-forest-300);
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Mobile adjustments ── */
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: clamp(2rem, 10vw, 3rem);
+    }
+    .hero-title-outline {
+      -webkit-text-stroke-width: 0.5px;
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+    }
+    .activity-date {
+      width: 3rem;
+      font-size: 0.7rem;
+    }
+    .activity-text {
+      font-size: 0.85rem;
+    }
+    .nav-card {
+      padding: 1.25rem;
+    }
+  }
+</style>
