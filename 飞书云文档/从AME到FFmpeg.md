@@ -1,11 +1,4 @@
----
-title: "从AME到FFmpeg"
-description: "躺在东区宿舍的床上，凌晨两三点的我还是睡不着，我想做一个电影剪辑视频。前几天偶然间发现我很喜欢的几部电影都是在94，95年上映的，于是想做个视频记录一下这份感受，那天晚上我便开始了头脑风暴（06.1.28） 我一度想现在就爬起来开始筹备这件事情，反正放假了校园网也没有断开，但我还是决定睡觉了，第二天一起来就开始研究如何进行剪辑，很快我遇到了接踵而至的问题。 首先面临的问题就是MKV类型的文件根本拖"
-category: "技术学习笔记"
-tags: ["FFmpeg", "视频编码", "Kimi", "PR", "AME"]
-maturity: "evergreen"
-publishedAt: 2026-02-01
----
+# 从AME到FFmpeg
 
 躺在东区宿舍的床上，凌晨两三点的我还是睡不着，我想做一个电影剪辑视频。前几天偶然间发现我很喜欢的几部电影都是在94，95年上映的，于是想做个视频记录一下这份感受，那天晚上我便开始了头脑风暴（06\.1\.28）
 
@@ -48,3 +41,6 @@ AME的问题很好解决，下载一个软件对于我来说还是太easy了，�
 ![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MjBmZWEzODNkOWJhMjM3ZjVlNmFjMDdkZjY0NjFkMWFfNDg2ZmE3NWE2ZGUwMDY2MTAwZjIxZmRmNTJiZWE5ODlfSUQ6NzYyMTQwMTg0MzY2Nzc0OTgyOF8xNzgxMTU1MDUwOjE3ODEyNDE0NTBfVjM)
 
 其实当时和kimi交互也是遇到了很多问题，光是转一个封装的格式都要大费周章，现在再回看真是感慨，其实物理上时间就过去了一两个月，但是我的体感远远不止这么短。可能我也理解了kimi创始人杨植麟在访谈中所说的人间一天，ai一年。
+
+
+
