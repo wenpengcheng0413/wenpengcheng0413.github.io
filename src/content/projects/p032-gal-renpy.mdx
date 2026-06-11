@@ -1,0 +1,67 @@
+---
+title: "美少女万华镜 Ren'Py 移植"
+subtitle: "日式视觉小说引擎逆向工程 + iOS 平台移植"
+description: "对 omega-star 社的 Kirikiri 引擎视觉小说进行完整逆向：C# 工具链提取 5,710 张图片、2,742 个音频，将游戏脚本翻译为 Ren'Py 格式，打包为 iOS IPA 通过 SideStore 侧载运行。"
+grade: "S"
+category: "游戏"
+techStack: ["C#", "Ren'Py", "Python", "Kirikiri", "iOS"]
+completionRate: 85
+featured: true
+sortOrder: 5
+publishedAt: 2026-05-01
+---
+
+## 背景
+
+这是我技术上最具挑战性的项目——对一款日式视觉小说进行完整的逆向工程，并将其移植到 iOS 平台。
+
+原游戏使用 Kirikiri 引擎，资源全部以私有加密格式（.qlie）打包。要让它在 iOS 上运行，需要：
+1. 解包所有加密资源
+2. 将游戏脚本从 Kirikiri 格式翻译为 Ren'Py 格式
+3. 将所有图片和音频格式转换
+4. 打包为 iOS IPA
+
+## 技术流程
+
+```
+原版游戏(Kirikiri引擎, ~5.7GB)
+    ↓ C# 工具链逆向
+├── .s 脚本文件 → 解析/翻译 → Ren'Py .rpy 脚本
+├── .qlie 图像包 → 解包 → 5,710 张 DPNG 图片
+├── 音频包 → 提取 → 2,742 个 OGG 音频
+└── 打包 → Ren'Py 项目 → iOS IPA → SideStore 侧载
+```
+
+## 技术难点
+
+### 私有加密格式逆向
+
+.qlie 是 Kirikiri 引擎的私有打包格式。通过分析文件头和数据块结构，编写了 C# 解包工具。
+
+### 脚本语法翻译
+
+Kirikiri 使用 .s 格式的脚本语言，Ren'Py 使用 Python 语法的 .rpy 格式。需要处理：
+- 分支逻辑的语法差异
+- 角色立绘的显示/隐藏/变换
+- 音频和背景的切换
+- 存档系统的接口差异
+
+### iOS 打包
+
+Ren'Py 项目 → Xcode 构建 → IPA 签名 → SideStore 侧载安装
+
+## 数据统计
+
+| 资源类型 | 数量 |
+|----------|------|
+| 图片（DPNG） | 5,710 张 |
+| 音频（OGG） | 2,742 个 |
+| 游戏脚本 | ~36,000 行 Ren'Py |
+
+## 我的收获
+
+- 二进制文件格式分析与逆向
+- 多语言混合编程（C# + Ren'Py + Python）
+- 游戏引擎架构的理解
+- iOS 侧载部署流程
+- 最重要的：**解决问题的毅力和耐心**——面对未知格式时的逐步探索

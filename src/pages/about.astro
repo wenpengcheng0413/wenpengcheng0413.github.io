@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于我" description="环境科学学生 × AI 探索者">
+  <article class="max-w-3xl mx-auto animate-in">
+    <!-- Hero -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold text-text-primary mb-4">你好，我是文鹏骋</h1>
+      <p class="text-lg text-text-secondary">环境科学大二学生 · AI 探索者 · 足球爱好者</p>
+    </div>
+
+    <!-- Story-driven bio -->
+    <section class="prose prose-lg max-w-none mb-12">
+      <h2>我的故事</h2>
+      <p>
+        2026 年情人节的凌晨，我在电脑前盯着屏幕上跑通的第一个 Python 脚本，
+        兴奋得睡不着觉。那个脚本的功能很简单——把一个 MKV 电影文件的音轨转成
+        AAC 格式，让电视能放出声音。
+      </p>
+      <p>
+        但为了这一刻，我花了整整半个多月：从想剪一个电影视频开始，到发现 PR
+        打不开 MKV 文件，到认识 FFmpeg，到研究音轨编码，到发现电视只认默认音轨，
+        到用 VLC 播放器绕过限制……每一步都是第一次，每一次报错都是新世界。
+      </p>
+      <p>
+        我是环境科学专业的学生，不是计算机科班出身。但正是这种"外行"的视角，
+        让我对每一行跑通的代码都保持着最原始的兴奋。我不是在"写代码"——
+        我是在用工具解决我真实遇到的问题。
+      </p>
+      <p>
+        从第一个 Python 脚本到现在，我已经在课余时间完成了 28 个编程项目，
+        涵盖 GIS 碳排放分析、MCP 协议开发、微信小程序、Flutter 移动应用、
+        游戏引擎逆向工程……每一个项目背后都是一段独特的学习旅程。
+      </p>
+    </section>
+
+    <!-- Timeline -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🧭 我的旅程</h2>
+
+      <div class="timeline-line space-y-6">
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2021年7月</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">B 站转正</h3>
+            <p class="text-text-secondary text-sm mt-1">60 分通过答题考试，成为 B 站正式会员</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2025年9月</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">大二开始</h3>
+            <p class="text-text-secondary text-sm mt-1">暑假结束，开始思考学术方向与导师选择</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2026年1月</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">认识 FFmpeg</h3>
+            <p class="text-text-secondary text-sm mt-1">为了剪辑电影视频，第一次接触命令行工具</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2026年2月14日</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">第一个 Python 脚本</h3>
+            <p class="text-text-secondary text-sm mt-1">用 Python + FFmpeg 实现电影音轨自动转换</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2026年4月</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">碳排放制图系统</h3>
+            <p class="text-text-secondary text-sm mt-1">环境科学 × GIS × Python 的跨学科实践</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">2026年5月</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">MCP 协议开发</h3>
+            <p class="text-text-secondary text-sm mt-1">B站知识图谱 MCP 系统 + Cashew IPA 构建</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="text-sm text-forest-400 font-medium">现在</div>
+            <h3 class="text-lg font-semibold text-text-primary mt-1">持续建造中</h3>
+            <p class="text-text-secondary text-sm mt-1">保持好奇，继续探索 🚀</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🛠️ 技能树</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div class="card"><span class="font-medium">Python</span><p class="text-xs text-text-secondary mt-1">主要开发语言</p></div>
+        <div class="card"><span class="font-medium">Streamlit</span><p class="text-xs text-text-secondary mt-1">Web 应用框架</p></div>
+        <div class="card"><span class="font-medium">Flutter/Dart</span><p class="text-xs text-text-secondary mt-1">移动端开发</p></div>
+        <div class="card"><span class="font-medium">GIS/GeoPandas</span><p class="text-xs text-text-secondary mt-1">空间数据分析</p></div>
+        <div class="card"><span class="font-medium">MCP 协议</span><p class="text-xs text-text-secondary mt-1">AI Agent 工具开发</p></div>
+        <div class="card"><span class="font-medium">微信小程序</span><p class="text-xs text-text-secondary mt-1">云开发全栈</p></div>
+        <div class="card"><span class="font-medium">FFmpeg</span><p class="text-xs text-text-secondary mt-1">音视频处理</p></div>
+        <div class="card"><span class="font-medium">C#/Ren'Py</span><p class="text-xs text-text-secondary mt-1">游戏逆向工程</p></div>
+        <div class="card"><span class="font-medium">AI 协作开发</span><p class="text-xs text-text-secondary mt-1">Claude/DeepSeek/Trae</p></div>
+      </div>
+    </section>
+
+    <!-- Interests -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🎮 不只是代码</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card">
+          <div class="text-2xl mb-2">⚽</div>
+          <h3 class="font-semibold text-text-primary">足球</h3>
+          <p class="text-sm text-text-secondary">环化学院队成员 · 曼城球迷 · 2026年冠军</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-2">🎬</div>
+          <h3 class="font-semibold text-text-primary">电影</h3>
+          <p class="text-sm text-text-secondary">王家卫 · 花样年华 · 4K收藏爱好者</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-2">🎵</div>
+          <h3 class="font-semibold text-text-primary">音乐</h3>
+          <p class="text-sm text-text-secondary">4300分钟/月 · 吉他弹唱 · 莫文蔚</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-2">🎮</div>
+          <h3 class="font-semibold text-text-primary">游戏</h3>
+          <p class="text-sm text-text-secondary">美少女万华镜 · 第五人格 · FC</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI learning path -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🤖 AI 学习路线</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-forest-100/20">
+              <th class="text-left py-2 text-text-secondary font-medium">阶段</th>
+              <th class="text-left py-2 text-text-secondary font-medium">使用工具</th>
+              <th class="text-left py-2 text-text-secondary font-medium">用途</th>
+            </tr>
+          </thead>
+          <tbody class="text-text-secondary">
+            <tr class="border-b border-forest-100/10">
+              <td class="py-2 text-text-primary font-medium">启蒙期</td>
+              <td class="py-2">Kimi</td>
+              <td class="py-2">学习 FFmpeg，理解视频编码</td>
+            </tr>
+            <tr class="border-b border-forest-100/10">
+              <td class="py-2 text-text-primary font-medium">加速期</td>
+              <td class="py-2">Trae</td>
+              <td class="py-2">开发第一个桌面工具、碳排放系统</td>
+            </tr>
+            <tr class="border-b border-forest-100/10">
+              <td class="py-2 text-text-primary font-medium">协同期</td>
+              <td class="py-2">Claude Code</td>
+              <td class="py-2">MCP 服务器开发、Flutter 项目构建</td>
+            </tr>
+            <tr>
+              <td class="py-2 text-text-primary font-medium">多元期</td>
+              <td class="py-2">DeepSeek V4 Pro 1M · ChatGPT</td>
+              <td class="py-2">长上下文分析 · 辅助学习与写作</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="text-center py-8">
+      <h2 class="text-2xl font-bold text-text-primary mb-4">📬 联系我</h2>
+      <div class="flex items-center justify-center gap-4">
+        <a href="https://github.com/miruteer" class="text-text-secondary hover:text-forest-500 transition-colors" target="_blank">GitHub</a>
+        <span class="text-text-secondary/30">·</span>
+        <a href="https://space.bilibili.com/1914638994" class="text-text-secondary hover:text-forest-500 transition-colors" target="_blank">Bilibili</a>
+        <span class="text-text-secondary/30">·</span>
+        <a href="mailto:hi@garden.example.com" class="text-text-secondary hover:text-forest-500 transition-colors">Email</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

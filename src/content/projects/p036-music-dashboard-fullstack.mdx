@@ -1,0 +1,23 @@
+---
+title: "音乐仪表盘 (全栈版)"
+subtitle: "FastAPI + React/MUI 全栈音乐数据仪表盘"
+description: "同一需求的 FastAPI + React 全栈重构版本。14个 REST API 端点，CSV/JSON 数据导入，月度热门歌曲排行，音乐品味分析，搜索功能。"
+grade: "A"
+category: "Web应用"
+techStack: ["Python", "FastAPI", "React", "MUI", "Chart.js", "Vite"]
+completionRate: 85
+featured: false
+sortOrder: 13
+publishedAt: 2026-03-10
+---
+
+## 架构成对比
+
+| | Streamlit 版 | 全栈版 |
+|---|---|---|
+| 前端 | Streamlit 自动生成 | React + MUI + Chart.js |
+| 后端 | Streamlit 内置 | FastAPI + Uvicorn |
+| API | 无 | 14 个 REST 端点 |
+| 数据导入 | CSV 扫描 | CSV + JSON |
+| 安全 | 无 | API Key 认证 |
+| 部署 | `streamlit run` | 前后端分离部署 |

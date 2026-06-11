@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnpm/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Astro
+.astro/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Content cache
+src/content/feishu-export/*.json
+
+# Logs
+*.log

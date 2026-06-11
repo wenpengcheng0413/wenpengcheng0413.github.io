@@ -1,0 +1,65 @@
+---
+title: "InfoPush 信息聚合推送平台"
+subtitle: "17+ 源科技/AI新闻聚合 + 多渠道推送的 Streamlit Web 应用"
+description: "集成 Hacker News、TechCrunch、Dev.to、Product Hunt、Reddit、Hugging Face 等 17+ 数据源，支持 Telegram/Email/Webhook 三渠道推送。这是我代码量最大的自研 Python 项目。"
+grade: "S"
+category: "Web应用"
+techStack: ["Python", "Streamlit", "SQLite", "RSS", "Telegram API", "Webhook"]
+completionRate: 90
+featured: true
+sortOrder: 4
+publishedAt: 2026-04-01
+---
+
+## 背景
+
+每天在各种科技媒体和 AI 社区之间切换，获取信息很碎片化。我想要一个"一站式"的信息聚合面板。
+
+## 数据源矩阵
+
+**科技资讯**: Hacker News, TechCrunch, Dev.to, Product Hunt, Reddit, Wired, Ars Technica, Engadget, The Verge, MIT Tech Review
+
+**AI 动态**: Hugging Face, Google Gemini, OpenRouter, OpenAI Blog, Google AI Blog, DeepMind Blog, Papers With Code, ArXiv
+
+**开发者**: GitHub Trending
+
+## 推送渠道
+
+- Telegram Bot — 即时推送
+- Email (SMTP) — 每日摘要
+- Webhook — Discord / Slack / 钉钉 / 飞书
+
+## 架构设计
+
+19 个爬虫模块，每个数据源独立封装，统一接口：
+
+```
+scrapers/
+├── hacker_news.py
+├── techcrunch.py
+├── dev_to.py
+├── product_hunt.py
+├── huggingface.py
+├── gemini.py
+├── openrouter.py
+├── reddit.py
+├── arxiv.py
+├── github_trending.py
+├── openai_blog.py
+├── google_ai_blog.py
+├── deepmind_blog.py
+└── ...
+```
+
+## 设计亮点
+
+- 统一接口：所有爬虫返回相同的数据结构
+- 深色质感主题：完整自定义 CSS 注入
+- 收藏 + 搜索：全文本检索
+- 模块化：scrapers / push / ui / database 四层分离
+
+## 我的收获
+
+- 大规模多源数据聚合的工程实践
+- Streamlit 深度定制（CSS 注入、组件化）
+- 产品思维——从信息获取到消费到分发的完整链路设计

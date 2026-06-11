@@ -1,0 +1,68 @@
+---
+title: "B站动态知识图谱 MCP 系统"
+subtitle: "让 AI Agent 理解你的 B 站信息流"
+description: "基于MCP协议的服务端工具，自动拉取B站动态和观看历史，通过内置NLP引擎进行内容分类和主题识别，构建知识图谱，一键同步到飞书知识库。"
+grade: "S"
+category: "AI开发"
+techStack: ["Python", "FastMCP", "SQLite", "bilibili-api", "飞书API", "NLP"]
+completionRate: 85
+featured: true
+sortOrder: 2
+publishedAt: 2026-03-15
+---
+
+## 背景
+
+我每天花大量时间在 B 站上学习技术内容，但问题来了：看完的视频、收藏的动态，过一周就忘了。
+
+2025 年底，Anthropic 发布了 MCP（Model Context Protocol）——一个让 AI Agent 能够调用外部工具的开放协议。
+
+我突然想到：能不能做一个 MCP 服务器，让 AI Agent 帮我管理 B 站上的信息？
+
+## 问题定义
+
+1. B 站内容消费没有系统化管理
+2. 手动整理太费时间
+3. 需要一个能"理解"技术内容并自动归类的系统
+
+## 解决方案
+
+一个 MCP 协议服务器，提供 **10 个工具**：
+
+| 工具 | 功能 |
+|------|------|
+| `bilibili_fetch` | 获取 UP 主动态（支持时间范围过滤） |
+| `content_analyzer` | 智能分析内容（领域/主题/难度/类型） |
+| `feishu_doc_writer` | 将分析结果写入飞书文档 |
+| `history_fetch` | 获取观看历史 |
+| `history_fetch_all` | 拉取全量观看历史 |
+| `history_analyzer` | 分析观看行为模式 |
+| `history_full_analyzer` | 长期行为分析 |
+| `knowledge_graph_builder` | 构建知识图谱 |
+| `feishu_sync` | 同步图谱到飞书知识库 |
+| `feishu_long_term_report` | 生成长期分析报告 |
+
+## 技术实现
+
+### MCP 协议：让 AI Agent 调用你的工具
+
+基于 FastMCP 框架构建，所有工具通过 MCP 协议暴露给 Claude Code 等 AI Agent。
+
+### NLP 引擎：不依赖 LLM 的内容分类
+
+设计了一个 **3 层分类体系**：
+
+**领域(Domain) → 主题(Topic) → 内容类型(Content Type)**
+
+通过关键词匹配实现快速分类，支持 LLM 增强但不必须。
+
+### 飞书集成：Markdown → Docx Block
+
+实现了自定义的 Markdown 到飞书文档 Block 结构的转换器。
+
+## 我的收获
+
+- 第一次理解协议设计的价值——MCP 让 AI Agent 有了"手脚"
+- 异步编程从概念到实践
+- 知识图谱建模——如何用节点和边组织信息
+- 跨平台 API 集成的复杂性管理

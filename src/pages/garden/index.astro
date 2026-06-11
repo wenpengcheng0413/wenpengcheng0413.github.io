@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('garden');
+entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categoryLabels: Record<string, string> = {
+  milestone: '🎯 里程碑',
+  'project-log': '🔧 项目日志',
+  review: '📝 月度/学期总结',
+  reflection: '🧠 个人思考',
+  academic: '🎓 学术生涯',
+  creative: '🎨 创作记录',
+  hobby: '🎮 兴趣爱好',
+  daily: '🌞 日常生活',
+};
+
+const categoryMoods: Record<string, string> = {
+  milestone: 'sunny',
+  'project-log': 'sunny',
+  review: 'sunny',
+  reflection: 'sunny',
+  academic: 'cloudy',
+  creative: 'sunny',
+  hobby: 'sunny',
+  daily: 'sunny',
+};
+---
+
+<BaseLayout title="成长记录" description="从 B 站转正到第一个 Python 脚本 · 跨越 5 年的真实记录">
+  <section class="animate-in">
+    <h1 class="text-4xl font-bold text-text-primary mb-2">🌱 成长记录</h1>
+    <p class="text-text-secondary mb-8">{entries.length} 条记录 · 从 2021 到 2026 · 跨越 5 年的真实成长</p>
+
+    <!-- Category nav -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {Object.entries(categoryLabels).map(([key, label]) => (
+        <a href={`#cat-${key}`} class="px-3 py-1.5 rounded-full text-sm border border-forest-100/20 hover:border-forest-400 transition-colors text-text-secondary hover:text-forest-500">
+          {label} ({entries.filter(e => e.data.category === key).length})
+        </a>
+      ))}
+    </div>
+
+    <!-- Timeline layout -->
+    <div class="timeline-line space-y-6">
+      {entries.map(entry => (
+        <div class="relative" id={`cat-${entry.data.category}`}>
+          <div class="timeline-dot"></div>
+          <div class="ml-6">
+            <div class="flex items-center gap-2 mb-1">
+              <time class="text-sm text-forest-400 font-medium">{entry.data.date.toLocaleDateString('zh-CN')}</time>
+              <span class="text-xs tag">{categoryLabels[entry.data.category] || entry.data.category}</span>
+              {entry.data.mood && (
+                <span class="text-xs">{entry.data.mood === 'sunny' ? '☀️' : entry.data.mood === 'cloudy' ? '☁️' : '🌧️'}</span>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary">
+              {entry.data.bilibili_url ? (
+                <a href={entry.data.bilibili_url} target="_blank" class="hover:text-forest-500 transition-colors">{entry.data.title}</a>
+              ) : entry.data.title}
+            </h3>
+            {entry.data.description && (
+              <p class="text-sm text-text-secondary mt-2 line-clamp-3">{entry.data.description}</p>
+            )}
+            {entry.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1 mt-2">
+                {entry.data.tags.map(t => <span class="tag text-xs">{t}</span>)}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

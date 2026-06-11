@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const grades = ['S', 'A', 'B', 'C'] as const;
+const categories = ['全部', '环境科学', 'AI开发', '桌面工具', 'Web应用', '移动开发', '游戏', '内容创作'] as const;
+---
+
+<BaseLayout title="项目作品" description="28 个代码项目 · 从环境科学到 AI 开发">
+  <section class="animate-in">
+    <h1 class="text-4xl font-bold text-text-primary mb-2">💻 项目作品</h1>
+    <p class="text-text-secondary mb-8">28 个项目 · 5 个 S 级旗舰展示 · 跨越环境科学到逆向工程的编程实践</p>
+
+    <!-- Grade filter tabs -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {grades.map(g => (
+        <a href={`#grade-${g}`} class="px-4 py-2 rounded-full text-sm border border-forest-100/20 hover:border-forest-400 transition-colors text-text-secondary hover:text-forest-500">
+          {g} 级项目 ({projects.filter(p => p.data.grade === g).length})
+        </a>
+      ))}
+    </div>
+
+    <!-- S 级项目 -->
+    <section id="grade-S" class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">⭐ S 级项目 — 核心代表项目</h2>
+      <div class="garden-grid">
+        {projects.filter(p => p.data.grade === 'S').sort((a, b) => a.data.sortOrder - b.data.sortOrder).map(project => (
+          <a href={`/projects/${project.id}`} class="card group">
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="tag">{project.data.category}</span>
+              {project.data.techStack.slice(0, 3).map(t => <span class="tag">{t}</span>)}
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-forest-500 transition-colors">{project.data.title}</h3>
+            <p class="text-sm text-text-secondary">{project.data.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- A 级项目 -->
+    <section id="grade-A" class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🌟 A 级项目 — 完整项目展示</h2>
+      <div class="garden-grid">
+        {projects.filter(p => p.data.grade === 'A').sort((a, b) => a.data.sortOrder - b.data.sortOrder).map(project => (
+          <a href={`/projects/${project.id}`} class="card group">
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span class="tag">{project.data.category}</span>
+              {project.data.techStack.slice(0, 3).map(t => <span class="tag">{t}</span>)}
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-forest-500 transition-colors">{project.data.title}</h3>
+            <p class="text-sm text-text-secondary">{project.data.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- B/C 级项目 -->
+    <section id="grade-B" class="mb-12">
+      <h2 class="text-2xl font-bold text-text-primary mb-6">🌿 B/C 级项目 — 实验与学习记录</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {projects.filter(p => p.data.grade === 'B' || p.data.grade === 'C').sort((a, b) => a.data.sortOrder - b.data.sortOrder).map(project => (
+          <a href={`/projects/${project.slug}`} class="card group flex items-center gap-3 p-3">
+            <span class="text-xs px-2 py-0.5 rounded-full bg-forest-100 text-forest-600 dark:bg-forest-800 dark:text-forest-300 font-medium">{project.data.grade}</span>
+            <div>
+              <h3 class="text-sm font-medium text-text-primary group-hover:text-forest-500 transition-colors">{project.data.title}</h3>
+              <p class="text-xs text-text-secondary">{project.data.category} · {project.data.techStack.slice(0, 3).join(', ')}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </section>
+</BaseLayout>

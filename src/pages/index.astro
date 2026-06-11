@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+---
+
+<BaseLayout title="首页" description="环境科学学生 × AI 探索者的数字花园">
+  <section class="min-h-[80vh] flex flex-col justify-center py-16 animate-in">
+    <div class="max-w-2xl mx-auto text-center mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-forest-500 to-forest-300 bg-clip-text text-transparent">
+        Building in Public.<br/>Growing in Public.<br/>Thinking in Public.
+      </h1>
+      <p class="text-lg text-text-secondary leading-relaxed">
+        环境科学专业学生，利用课余时间自学 AI 和编程。<br/>
+        这里是我的数字花园——记录学习过程、项目作品和成长轨迹。<br/>
+        不装懂，不藏拙，真实记录。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+      <a href="/projects" class="card group">
+        <div class="text-3xl mb-3">💻</div>
+        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">项目作品</h3>
+        <p class="text-sm text-text-secondary">28 个代码项目 · 5 个旗舰展示</p>
+      </a>
+      <a href="/blog" class="card group">
+        <div class="text-3xl mb-3">📝</div>
+        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">技术博客</h3>
+        <p class="text-sm text-text-secondary">AI 协作开发 · 项目复盘 · 学习笔记</p>
+      </a>
+      <a href="/garden" class="card group">
+        <div class="text-3xl mb-3">🌱</div>
+        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">成长记录</h3>
+        <p class="text-sm text-text-secondary">从 B 站转正到第一个 Python 脚本 · 跨越 5 年</p>
+      </a>
+      <a href="/about" class="card group">
+        <div class="text-3xl mb-3">👤</div>
+        <h3 class="text-lg font-semibold text-text-primary mb-1 group-hover:text-forest-500 transition-colors">关于我</h3>
+        <p class="text-sm text-text-secondary">环境科学 × AI × 足球 · 故事版个人介绍</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Latest activity feed -->
+  <section class="py-8 border-t border-forest-100/20">
+    <h2 class="text-xl font-semibold text-text-primary mb-4">📡 最新动态</h2>
+    <div class="card p-4">
+      <div class="flex flex-col gap-3 text-sm text-text-secondary">
+        <div class="flex items-center gap-2">
+          <span class="text-forest-400">2026-06-10</span>
+          <span>📝 音乐节</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-forest-400">2026-06-03</span>
+          <span>🧠 感觉最近的自己很符合我对于大学生的想象</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-forest-400">2026-05-25</span>
+          <span>🎯 Cashew App IPA 构建成功 + 记账数据全部导入</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-forest-400">2026-05-25</span>
+          <span>📝 开发之外的生活～瓜迪奥拉告别</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-forest-400">2026-05-16</span>
+          <span>📝 这半个月很开心～sideloady 技术突破</span>
+        </div>
+      </div>
+      <div class="mt-4 pt-3 border-t border-forest-100/10">
+        <a href="/garden" class="text-sm text-forest-500 hover:text-forest-400 transition-colors">查看全部 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="py-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="card text-center">
+        <div class="text-2xl font-bold text-forest-500">28</div>
+        <div class="text-xs text-text-secondary mt-1">代码项目</div>
+      </div>
+      <div class="card text-center">
+        <div class="text-2xl font-bold text-forest-500">5</div>
+        <div class="text-xs text-text-secondary mt-1">S 级项目</div>
+      </div>
+      <div class="card text-center">
+        <div class="text-2xl font-bold text-forest-500">32</div>
+        <div class="text-xs text-text-secondary mt-1">成长记录</div>
+      </div>
+      <div class="card text-center">
+        <div class="text-2xl font-bold text-forest-500">2021</div>
+        <div class="text-xs text-text-secondary mt-1">记录起点</div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

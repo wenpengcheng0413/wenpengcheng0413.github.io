@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+blogPosts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const categories = [...new Set(blogPosts.map(p => p.data.category))];
+const allTags = [...new Set(blogPosts.flatMap(p => p.data.tags))];
+---
+
+<BaseLayout title="技术博客" description="AI 协作开发 · 项目复盘 · 学习笔记">
+  <section class="animate-in">
+    <h1 class="text-4xl font-bold text-text-primary mb-2">📝 技术博客</h1>
+    <p class="text-text-secondary mb-8">记录学习过程，而非展示成品。每一篇文章都是生长中的笔记。</p>
+
+    <!-- Category filter -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <a href="#all" class="px-4 py-1.5 rounded-full text-sm bg-forest-500 text-white">全部</a>
+      {categories.map(c => (
+        <a href={`#cat-${c}`} class="px-4 py-1.5 rounded-full text-sm border border-forest-100/20 hover:border-forest-400 transition-colors text-text-secondary hover:text-forest-500">{c}</a>
+      ))}
+    </div>
+
+    <!-- Post list -->
+    <div class="space-y-4">
+      {blogPosts.map(post => (
+        <a href={`/blog/${post.slug}`} class="card block group">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="text-xs text-text-secondary">{post.data.publishedAt.toLocaleDateString('zh-CN')}</span>
+            <span class="tag">{post.data.category}</span>
+            {post.data.maturity === 'seedling' && <span class="tag maturity-seedling">🌱</span>}
+            {post.data.maturity === 'evergreen' && <span class="tag maturity-evergreen">🌳</span>}
+          </div>
+          <h2 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-forest-500 transition-colors">{post.data.title}</h2>
+          <p class="text-sm text-text-secondary">{post.data.description}</p>
+          <div class="flex flex-wrap gap-1 mt-3">
+            {post.data.tags.map(t => <span class="tag text-xs">{t}</span>)}
+          </div>
+        </a>
+      ))}
+      {blogPosts.length === 0 && (
+        <div class="card text-center py-12">
+          <p class="text-text-secondary">还没有发布的文章。正在生长中 🌱</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

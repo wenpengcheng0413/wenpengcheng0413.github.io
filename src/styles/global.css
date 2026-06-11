@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest-950: #0d1f14;
+  --color-forest-900: #1b2a1f;
+  --color-forest-800: #2d3d2f;
+  --color-forest-700: #3d5a40;
+  --color-forest-600: #4a7c53;
+  --color-forest-500: #2d6a4f;
+  --color-forest-400: #52b788;
+  --color-forest-300: #74c69d;
+  --color-forest-200: #95d5b2;
+  --color-forest-100: #b7e4c7;
+  --color-forest-50: #f8faf6;
+
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Inter", sans-serif;
+
+  --color-text-primary: #1b2a1f;
+  --color-text-secondary: #6b7d6f;
+  --color-bg-primary: #f8faf6;
+  --color-bg-card: #ffffff;
+  --color-code-bg: #f0f4ef;
+}
+
+.dark {
+  --color-text-primary: #e0e8e0;
+  --color-text-secondary: #8a9a8a;
+  --color-bg-primary: #0d1f14;
+  --color-bg-card: #1b2a1f;
+  --color-code-bg: #1a2a1e;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background-color: var(--color-forest-400);
+  color: #fff;
+}
+
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid rgba(45, 106, 79, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(82, 183, 136, 0.3);
+  box-shadow: 0 8px 32px rgba(45, 106, 79, 0.1);
+}
+
+.dark .card {
+  border-color: rgba(82, 183, 136, 0.08);
+}
+
+.dark .card:hover {
+  border-color: rgba(82, 183, 136, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-line {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-forest-400), rgba(82, 183, 136, 0.1));
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0.1rem;
+  top: 0.5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--color-forest-400);
+  border: 2px solid var(--color-bg-primary);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: rgba(82, 183, 136, 0.1);
+  color: var(--color-forest-600);
+  margin: 0.2rem;
+}
+
+.dark .tag {
+  color: var(--color-forest-300);
+}
+
+.maturity-seedling { color: #b7a429; }
+.maturity-budding { color: #d4956b; }
+.maturity-evergreen { color: #2d6a4f; }
+
+.prose a {
+  color: var(--color-forest-500);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-forest-300);
+  transition: border-color 0.2s;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--color-forest-500);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .garden-grid {
+    grid-template-columns: 1fr;
+  }
+}

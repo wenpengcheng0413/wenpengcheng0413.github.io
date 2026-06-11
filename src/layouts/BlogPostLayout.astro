@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, publishedAt, tags, maturity } = entry.data;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="prose prose-lg max-w-3xl mx-auto animate-in">
+    <header class="mb-8 not-prose">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.map((t: string) => <span class="tag">{t}</span>)}
+        {maturity === 'seedling' && <span class="tag maturity-seedling">🌱 seedling</span>}
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-2">{title}</h1>
+      <time class="text-text-secondary text-sm" datetime={publishedAt.toISOString()}>
+        {publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </time>
+    </header>
+    <slot />
+  </article>
+</BaseLayout>
