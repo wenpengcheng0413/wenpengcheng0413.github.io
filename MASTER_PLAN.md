@@ -1,10 +1,12 @@
 # 🌱 个人网站建设总体规划书 (Master Plan)
 
-**版本**: V1.2  
+**版本**: V1.3  
 **创建日期**: 2026-06-11  
-**最后更新**: 2026-06-11 (飞书文档三部曲获取成功)  
+**最后更新**: 2026-06-11 (MVP 开发完成 + GitHub Pages 部署)  
 **项目代号**: garden  
-**项目路径**: `D:\projects\garden`
+**项目路径**: `D:\projects\garden`  
+**线上地址**: https://wenpengcheng0413.github.io  
+**GitHub仓库**: https://github.com/wenpengcheng0413/wenpengcheng.github.io
 
 ---
 
@@ -15,6 +17,7 @@
 | 2026-06-11 | V1.0 | 初始版本：三阶段规划全部写入 |
 | 2026-06-11 | V1.1 | B站动态数据刷新：23→32条，新增5条(5/16-6/10)，新增62张图片索引；新增飞书文档访问说明；新增更新日志章节 |
 | 2026-06-11 | V1.2 | 飞书文档三部曲获取成功：3个核心文档完整内容分析；第4个链接确认为B站主页(非飞书文档)；新增飞书文档深度分析；更新内容资产总表 |
+| 2026-06-11 | V1.3 | MVP开发完成：Astro 6 + Tailwind CSS 4 项目搭建，21个页面构建成功（首页/项目/博客/成长记录/关于/搜索），14个项目内容填充，26条B站动态全量导入，GitHub Pages部署（wenpengcheng0413.github.io），GitHub Actions CI/CD 配置 |
 
 ---
 
@@ -1176,6 +1179,71 @@ Week 4: 项目展示 + 成长记录 + 部署上线
 
 ---
 
+## 9.5 MVP 开发完成报告 (V1.3)
+
+### 技术栈
+
+| 层级 | 技术 | 版本 |
+|------|------|------|
+| 框架 | Astro | 6.4.6 |
+| CSS | Tailwind CSS (Vite插件) | 4.3.0 |
+| 交互 | Preact | 10.29.2 |
+| 内容 | MDX | 6.0.3 |
+| 搜索 | Pagefind | 1.5.2 |
+| 部署 | GitHub Pages + Actions | - |
+
+### 构建统计
+
+| 指标 | 数值 |
+|------|------|
+| 总页面 | 21 页 |
+| 构建时间 | 4.01 秒 |
+| 项目MDX | 14 个（5×S级 + 9×A级） |
+| 博客MDX | 1 篇 |
+| 成长记录MDX | 26 条（B站动态全量） |
+| Astro组件 | 2 个（Header/Footer） |
+| 布局模板 | 3 个（Base/BlogPost/Project） |
+| 页面路由 | 8 个（含动态路由） |
+
+### 页面清单
+
+```
+/                       首页 Bento Grid + 动态聚合
+/about                  关于我（故事版时间线）
+/projects               项目列表（S/A/B分级）
+/projects/[id]          项目详情页 ×14
+/blog                   博客列表
+/blog/[id]              博客详情页 ×1
+/garden                 成长记录时间线（26条）
+/search                 客户端全文搜索
+```
+
+### 配色方案
+
+采用计划书中的 **方案A（Forest 森林绿）**：
+- 主色调: `#2D6A4F` / 辅助色: `#52B788`
+- 浅色背景: `#F8FAF6` / 深色背景: `#0D1F14`
+- 支持 Dark/Light 切换，localStorage 持久化
+
+### GitHub Pages 部署
+
+**仓库**: https://github.com/wenpengcheng0413/wenpengcheng.github.io
+**线上地址**: https://wenpengcheng0413.github.io
+**CI/CD**: GitHub Actions (`.github/workflows/deploy.yml`)
+
+部署流程：
+1. `git push` 到 `main` 分支
+2. GitHub Actions 自动触发构建
+3. `npm ci` → `npm run build` → upload artifact
+4. `actions/deploy-pages` 部署到 GitHub Pages
+
+**用户需要确认的事项**:
+1. 进入仓库 Settings → Pages
+2. 确保 Source 设为 "GitHub Actions"
+3. 等待 Action 运行完成后访问 https://wenpengcheng0413.github.io
+
+---
+
 ## 10. 附录
 
 ### 10.1 网站栏目优先级总表
@@ -1202,12 +1270,12 @@ Week 4: 项目展示 + 成长记录 + 部署上线
 
 | 决策 | 选择 | 原因 |
 |------|------|------|
-| 前端框架 | Astro 6 | 内容型网站最佳实践，零JS默认输出 |
-| CSS方案 | Tailwind CSS 4 | 2026年事实标准，配合Astro使用体验佳 |
-| 部署平台 | Cloudflare Pages | 免费额度充足，支持Workers代理B站API |
-| 评论系统 | Giscus | 免费、数据自拥有、基于GitHub |
-| 搜索 | Pagefind | 静态网站全文搜索最佳方案 |
-| 统计 | Umami + CF Analytics | 隐私友好、免费 |
+| 前端框架 | Astro 6.4.6 | 内容型网站最佳实践，零JS默认输出 |
+| CSS方案 | Tailwind CSS 4 (Vite插件) | 2026年事实标准，配合Astro使用体验佳 |
+| 部署平台 | GitHub Pages（用户选择） | 用户已有 wenpengcheng0413.github.io 仓库，GitHub Actions CI/CD |
+| 评论系统 | Giscus（Phase 2） | 免费、数据自拥有、基于GitHub |
+| 搜索 | 客户端JS（MVP）→ Pagefind（Phase 2） | MVP用简单JS搜索，Phase 2升级为Pagefind |
+| 统计 | 待定（Phase 2） | Umami 或 Cloudflare Analytics |
 | 飞书接入 | MVP: iframe嵌入 | 零开发成本，即时可用 |
 
 ### 10.3 文件结构规划
